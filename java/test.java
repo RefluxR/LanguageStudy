@@ -1,37 +1,17 @@
-class parent {
-    int money;
-    int hand_count;
-
-    parent(int money, int hand_count){
-        this.money = money;
-        this.hand_count = hand_count;
-    }
-}
-
-class chiled extends parent {
-
-    String talent;
-
-    chiled(int money, int hand_count, String talent){
-        super(money, hand_count);
-
-        System.out.println(this.money);
-        System.out.println(super.money);  
-
-        
-
-        this.talent = talent;
-        this.money = 888888;
+public class test {
+    
+    interface F{
+        int apply(int x);
     }
 
- }
+    public static void run(F f){
 
-public class test{
+        f.apply(3);
+    }
+
     public static void main(String[] args){
-        chiled obj = new chiled(100, 2, "숨쉬기");
 
-        System.out.println(obj.money);
-        System.out.println(obj.hand_count);
-        System.out.println(obj.talent);
+        run((int n) -> n + 9);
     }
+
 }

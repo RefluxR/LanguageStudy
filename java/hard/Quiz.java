@@ -70,6 +70,7 @@ public class Quiz {
         // 만약 Child 내부에서 d.send(this.genericValue)를 호출한다면? 
         // (이 부분은 아래 출력 예측에 포함하지 않고 생각만 해보세요!)
 
-        obj.static_method();
+        //obj.static_method();
+        Parent.static_method(); // static 매서드는 클래스.함수로 바로 접근 가능. -> 인스턴스 안해도 됨
     }
 }
