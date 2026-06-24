@@ -1,4 +1,6 @@
-public class arraySame {
+package easy;
+
+public class ArraySame {
 	public static void check(int[] x, int[] y) {
 		if(x==y) System.out.print("O");
 		// x == y 를 비교하면 배열의 내용을 비교하는 것이 아님.

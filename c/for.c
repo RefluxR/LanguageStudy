@@ -15,6 +15,7 @@ int main() {
 	char str2[50] = "teststring";
 	int result = 0;
 	func(str2, str1);
+	printf("%s \n", str2);
 
 	for (int i = 0; str2[i] != '\0'; i++) {
 		result += i;

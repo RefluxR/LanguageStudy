@@ -1,6 +1,6 @@
 #include <stdio.h>
 //////////////////////////////////////////////////////////////////////////////////////////    %p로 주소 출력법 (void*)
-int point_first(){
+int point_1(){
     static int num1 = 10;
     // %p는 모든 자료형에 대한 포인터를 출력해야하기 때문에
     // void*로 형변환을 해주어야 한다.
@@ -10,7 +10,7 @@ int point_first(){
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////  선언법
-void point_second(){
+void point_2(){
     int *ptr;
     int num2 = 20;
     ptr = &num2;
@@ -24,7 +24,7 @@ void point_second(){
     printf("역참조(*)라는 것은... 포인터가 가리키는 주소에 (접근)하여 그 주소에 저장된 값을 읽거나 변경하는 것을 의미.\n");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////     문자열 리터럴
-void point_third(){
+void point_3(){
 
     char * string_p = "ABCD"; // &사용하지 않고 문자열 리터럴을 집어넣을 수 있는 이유는
                               // 문자열 리터럴은 컴파일러에 의해 자동으로 메모리의 특정 위치에 저장되고
@@ -42,21 +42,65 @@ void point_third(){
                                                                                               // 이렇게 하면 포인터 산술 연산이 발생
 
     printf("문자열 리터럴과 다르게 정수형 포인터는\n");
-    printf("%d", *(int_p + 1));
-    printf("이렇게 하면 int형 크기(4바이트)만큼 증가된 주소의 값을 읽어오게 된다.\n");
+    printf(" %d", (*int_p + 1));
+    printf("\n %d", num + 2 );
+    printf("\n 이렇게 하면 int형 크기(4바이트)만큼 증가된 주소의 값을 읽어오게 된다.\n");
     // 따라서 포인터 산술 연산은 포인터가 가리키는 자료형의 크기에 따라 주소 증가 폭이 달라진다.
-    // ------ 이와 다르게 문자열 리터럴은 char형(1바이트) 크기만큼 증가된 주소의 값을 읽어오게 된다.
+
+
+    printf("\n 이와 다르게 문자열 리터럴은 char형(1바이트) 크기만큼 증가된 주소의 값을 읽어오게 된다.");
     // 따라서 A 다음에 B가 출력된다.
 
+    char text[4] = "ABCD";
+    printf("\n text = %s", text );
+    printf("\n *text(역참조) = %c", *text );
+    printf("\n *text + 1 = %c", *(text + 1));
+    printf("\n *text + 2 = %c", *(text + 2));
 
     // 존나 중요함!!!!
     // 모든 포인터 산술 연산(ptr + N, ptr - N)은 포인터가 선언될 때 정해진 자료형에 의해 두 가지가 결정된다.
 }
+void point_4(){
+    // 배열 자체에 관심을 가져보면
+    
+    char text[5] = "ABCDE";
+    int arr[5] = {1,2,3,4,5};
 
+    char * text_p = text; // char * text_p = text[0];
+    int * arr_p = arr; // int * arr_p = arr[0];
+
+    // 여기서 중요한건
+
+    // 왜 * text_p = &text가 아니냐?  
+
+    // text는 text[0]이랑 똑같다
+    // text는 "ABCDE" 전체를 나타내는 종합적인 변수가 아니라
+    // text[0] 이라는 요소의 주소다...
+
+    // 그래서 &text = "하... 그래서 1번째 요소야? 2번째 요소야? 뭐야?!!" 
+    // 이렇게 돼버려서 어색해지기 때문 
+
+
+    printf("(void*)&arry    = %p", (void*)&arr);
+    printf("\n(void*)&arry[0] = %p\n", (void*)&arr[0]);
+    
+    for(int i = 0; i < 5; i++){
+        printf("%d", * (arr_p + i)); // arr[i]
+        //printf("%p", (void*)&arr[i] ); 
+    }
+
+    printf("\n");
+    
+
+    for(int i = 0; i < 5; i++){
+        printf("%c", * (text_p + i)); // text[i]
+    }
+
+}
 
 int main(){
 
-    point_third();
+    point_4();
     return 0;
 
 }
